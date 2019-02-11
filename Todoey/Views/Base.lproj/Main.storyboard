@@ -83,21 +83,25 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="p0o-cn-1Xv">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="CategoryCell" id="p0o-cn-1Xv" customClass="SwipeTableViewCell" customModule="SwipeCellKit">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="p0o-cn-1Xv" id="X2m-lL-D2W">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NQM-Ut-jiS">
+                                        <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="NQM-Ut-jiS">
                                             <rect key="frame" x="317" y="9" width="24" height="24"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="24" id="oTa-dx-5Bc"/>
+                                                <constraint firstAttribute="width" constant="24" id="rz7-5G-nPJ"/>
+                                            </constraints>
                                             <state key="normal" image="right-arrow"/>
                                         </button>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="trailing" secondItem="NQM-Ut-jiS" secondAttribute="trailing" constant="34" id="Kv6-Pp-QtW"/>
-                                        <constraint firstItem="NQM-Ut-jiS" firstAttribute="top" secondItem="X2m-lL-D2W" secondAttribute="top" constant="9" id="kyK-dZ-iQP"/>
+                                        <constraint firstAttribute="trailing" secondItem="NQM-Ut-jiS" secondAttribute="trailing" constant="34" id="OZj-Gr-UCR"/>
+                                        <constraint firstItem="NQM-Ut-jiS" firstAttribute="centerY" secondItem="X2m-lL-D2W" secondAttribute="centerY" id="vLw-IY-dBj"/>
                                     </constraints>
                                 </tableViewCellContentView>
                             </tableViewCell>

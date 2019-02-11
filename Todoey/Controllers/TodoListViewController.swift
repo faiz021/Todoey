@@ -9,7 +9,6 @@
 import UIKit
 import RealmSwift
 
-
 class TodoListViewController: UITableViewController{
     var realm = try! Realm()
     var todoItems: Results<Item>?
