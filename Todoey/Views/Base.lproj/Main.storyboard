@@ -99,6 +99,7 @@
                                             <state key="normal" image="right-arrow"/>
                                         </button>
                                     </subviews>
+                                    <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                     <constraints>
                                         <constraint firstAttribute="trailing" secondItem="NQM-Ut-jiS" secondAttribute="trailing" constant="34" id="OZj-Gr-UCR"/>
                                         <constraint firstItem="NQM-Ut-jiS" firstAttribute="centerY" secondItem="X2m-lL-D2W" secondAttribute="centerY" id="vLw-IY-dBj"/>
