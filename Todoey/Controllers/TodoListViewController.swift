@@ -8,10 +8,13 @@
 
 import UIKit
 import RealmSwift
+import ChameleonFramework
 
 class TodoListViewController: SwipeTableViewController {
     var realm = try! Realm()
     var todoItems: Results<Item>?
+    
+    @IBOutlet weak var searchBar: UISearchBar?
     
     var selectedCategory: Category? {
         didSet {
@@ -21,6 +24,35 @@ class TodoListViewController: SwipeTableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        title = selectedCategory?.name
+        
+        guard let colourHex = selectedCategory?.cellColour else { fatalError() }
+        updateNavBar(withHexCode: colourHex)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        updateNavBar(withHexCode: "1D9BF6")
+    }
+    
+    //MARK: - Nav bar setup methods
+    
+    func updateNavBar(withHexCode colourHexCode: String) {
+        guard let navCtrl = navigationController?.navigationBar else {
+            fatalError("NavigationController not found!")
+        }
+        
+        guard let navBarColour = UIColor(hexString: colourHexCode) else { fatalError() }
+        
+        navCtrl.barTintColor = navBarColour
+        
+        navCtrl.tintColor = ContrastColorOf(navBarColour, returnFlat: true)
+        
+        navCtrl.largeTitleTextAttributes = [NSAttributedString.Key.foregroundColor : ContrastColorOf(navBarColour, returnFlat: true)]
+        
+        searchBar?.barTintColor = navBarColour
     }
     
     //MARK - TableView Datasource Methods
@@ -36,6 +68,11 @@ class TodoListViewController: SwipeTableViewController {
         cell.textLabel?.text = item?.title ?? "No Items added yet!"
         cell.accessoryType = item?.done ?? false ? .checkmark : .none
         
+        if let colour = UIColor(hexString: selectedCategory!.cellColour)?.darken(byPercentage: CGFloat(indexPath.row) / CGFloat(todoItems!.count)) {
+            cell.backgroundColor = colour
+            cell.textLabel?.textColor = ContrastColorOf(colour, returnFlat: true)
+        }
+        
         return cell
     }
     
@@ -45,7 +82,7 @@ class TodoListViewController: SwipeTableViewController {
         if let item = todoItems?[indexPath.row] {
             do {
                 try realm.write {
-                    //                    realm.delete(item)
+                    //  realm.delete(item)
                     item.done = !item.done
                 }
             } catch {
